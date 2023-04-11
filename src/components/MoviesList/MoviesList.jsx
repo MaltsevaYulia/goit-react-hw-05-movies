@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { Link } from "react-router-dom";
 
 const MoviesList = ({ movies }) => {
@@ -10,7 +10,7 @@ const MoviesList = ({ movies }) => {
     <ul>
       {movies.map(({ id, title }) => {
         return (
-          <Link movies={movies} key={id} to={`movies/${id}`}>
+          <Link movies={movies} key={id} to={`/movies/${id}`}>
             <li>{title}</li>
           </Link>
         );

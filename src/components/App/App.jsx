@@ -8,12 +8,14 @@ import { fetchMovies } from 'servises/getMovies';
 
 import { Route, Routes } from 'react-router-dom';
 import MovieInfo from 'components/MovieInfo/MovieInfo';
+import Cacts from 'components/Cacts/Cacts';
+import Reviews from 'components/Reviews/Reviews';
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetchMovies()
+    fetchMovies('trending/movie/day')
       .then(({ data: { results } }) => {
         // setMovies(prevMovies => [...prevMovies, ...results]);
         setMovies(results);
@@ -32,22 +34,9 @@ export const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home movies={movies} />} />
           <Route path="movies" element={<Movies />} />
-          <Route
-            path="movies/:movieId"
-            element={
-              <>
-                <MovieInfo />
-              </>
-            }
-          >
-            <Route
-              path="casts"
-              element={<div>Это будет комплнент casts</div>}
-            />
-            <Route
-              path="reviews"
-              element={<div>Это будет комплнент Reviews</div>}
-            />
+          <Route path="movies/:movieId" element={<MovieInfo/>}>
+            <Route path="casts" element={<Cacts/>}/>
+            <Route path="reviews" element={<Reviews/>}/>
           </Route>
         </Route>
       </Routes>
