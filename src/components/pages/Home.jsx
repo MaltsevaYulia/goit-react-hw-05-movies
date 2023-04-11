@@ -1,16 +1,11 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import MoviesList from 'components/MoviesList/MoviesList';
 
-const Home = () => {
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    return () => {};
-  }, []);
 
+const Home = ({ movies }) => {
   return (
     <div>
-          <h1>Trending today</h1>
-          <ul><li>Movies list</li></ul>
+      <h1>Trending today</h1>
+      <MoviesList movies={movies} />
     </div>
   );
 };
