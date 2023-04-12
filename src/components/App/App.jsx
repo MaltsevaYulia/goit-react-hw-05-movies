@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { fetchMovies } from 'servises/getMovies';
 
 import { Route, Routes } from 'react-router-dom';
-import MovieInfo from 'components/MovieInfo/MovieInfo';
+import MovieInfo from 'components/pages/MovieInfo/MovieInfo';
 import Cacts from 'components/Cacts/Cacts';
 import Reviews from 'components/Reviews/Reviews';
 

@@ -23,22 +23,22 @@ body {
     justify-content: center;
 } */
 
-.movie {
+/* .movie {
     max-width: 800px;
     border-radius: 5px;
     display: flex;
     box-shadow: 0 5px 20px 10px rgba(0, 0, 0, .2);
    overflow: hidden;
-}
+} */
 
-.movie__hero {
+/* .movie__hero {
   flex: 0 0 45%;
-}
+} */
 
-.movie__img {
+/* .movie__img {
     width: 100%;
     display: block;
-}
+} */
 
 .movie__content {
     background-color: #fff;

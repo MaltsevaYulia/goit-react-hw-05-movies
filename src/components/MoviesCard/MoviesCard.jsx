@@ -2,19 +2,22 @@ import { useParams } from 'react-router-dom';
 import css from './MoviesCard.module.css';
 import { useEffect, useState } from 'react';
 import { fetchMovies } from 'servises/getMovies';
+import { DivMovie, DivHero, MovieImg, DivContent } from './MoviesCard.styled';
 
 const MoviesCard = () => {
-  const [movie, setMovie] = useState({});
   const { movieId } = useParams();
-//   console.log('🚀 ~ MoviesCard ~ movieId:', movieId);
+  const [movie, setMovie] = useState({});
+  const [genres, setGenres] = useState([]);
+  //   console.log('🚀 ~ MoviesCard ~ movieId:', movieId);
 
-    useEffect(() => {
+  useEffect(() => {
     fetchMovies(`/movie/${movieId}`)
       .then(
         ({ data: { poster_path, title, overview, genres, vote_average } }) => {
           //   console.log('data', data);
           // setMovies(prevMovies => [...prevMovies, ...results]);
-          setMovie({ poster_path, title, overview, genres, vote_average });
+          setMovie({ poster_path, title, overview, vote_average });
+          setGenres([...genres]);
         }
       )
       .catch(error => {
@@ -24,38 +27,30 @@ const MoviesCard = () => {
     // return () => {
 
     // }
-    }, []);
-    
+  }, [movieId]);
 
   return (
-    <div className={css.movie}>
-      <div className={css.movie__hero}>
-        <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+    <DivMovie>
+      <DivHero>
+        <MovieImg
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
-          className={css.movie__img}
         />
-      </div>
-      <div className={css.movie__content}>
-        <div className={css.movie__title}>
-          <h1 className={css.heading__primary}>{movie.title}</h1>
-        </div>
-        <p>User score: {movie.vote_average}</p>
+      </DivHero>
+      <DivContent>
+        <h1 className={css.heading__primary}>{movie.title}</h1>
+        <p>User score: {Math.round(movie.vote_average * 10)}%</p>
+        {/* <p>User score: {movie.vote_average}</p> */}
         <h2>Overview</h2>
         <p className={css.movie__description}>{movie.overview}</p>
         <h3>Genres</h3>
-        {/* <ul>{movie.genres.map(el => {
-                  console.log(el);
-                  return <li key={el.id}>{el.name}</li>;
-              })}</ul> */}
-        <p className={css.movie__detail}>
-          gxnghjxghjhkhjkh
-          {/* {movie.genres.map(el => {
-            return <span>{el.name}</span>;
-          })} */}
-        </p>
-      </div>
-    </div>
+        <ul>
+          {genres.map(el => {
+            return <li key={el.id}>{el.name}</li>;
+          })}
+        </ul>
+      </DivContent>
+    </DivMovie>
   );
 };
 export default MoviesCard;

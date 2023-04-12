@@ -4,8 +4,8 @@ import { fetchMovies } from 'servises/getMovies';
 
 const Reviews = () => {
   const { movieId } = useParams();
-    const [reviews, setReviews] = useState([]);
-  console.log('🚀 ~ Reviews ~ movieId:', movieId);
+  const [reviews, setReviews] = useState([]);
+  
   useEffect(() => {
     fetchMovies(`/movie/${movieId}/reviews`)
       .then(({ data: { results } }) => {
@@ -22,16 +22,19 @@ const Reviews = () => {
 
   //author,content
   return (
-   
     <ul>
-      {reviews.map(({ id,author,content }) => {
-        return (
-          <li key={id}>
-            <h4>Autor: {author}</h4>
-            <p>Character: {content}</p>
-          </li>
-        );
-      })}
+      {reviews.length === 0 ? (
+        <p>We don't have any reviews for this movie</p>
+      ) : (
+        reviews.map(({ id, author, content }) => {
+          return (
+            <li key={id}>
+              <h4>Autor: {author}</h4>
+              <p>Character: {content}</p>
+            </li>
+          );
+        })
+      )}
     </ul>
   );
 };

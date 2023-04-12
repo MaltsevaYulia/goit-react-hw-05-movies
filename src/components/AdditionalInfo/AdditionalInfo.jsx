@@ -1,4 +1,4 @@
-import { Link, Outlet, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AdditionalInfo = () => {
   return (
