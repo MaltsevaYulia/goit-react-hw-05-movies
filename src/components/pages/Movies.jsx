@@ -48,7 +48,11 @@ const Movies = () => {
         <input value={query} onChange={handelChenge} />
         <button>Search</button>
       </form>
-      {movies.length > 0 && <MoviesList movies={movies} />}
+      {movies.length > 0 ? (
+        <MoviesList movies={movies} />
+      ) : (
+        <div>We don't have any movie matches this query</div>
+      )}
     </>
   );
 };
