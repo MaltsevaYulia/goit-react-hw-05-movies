@@ -1,5 +1,6 @@
+import { Suspense } from 'react';
 import {  Outlet } from 'react-router-dom';
-import { StyledNavLink, Nav } from './Layout.styled';
+import { StyledNavLink, Nav, Main } from './Layout.styled';
 
 const Layout = () => {
   return (
@@ -10,9 +11,11 @@ const Layout = () => {
           <StyledNavLink to="/movies">Movies</StyledNavLink>
         </Nav>
       </header>
-      <main>
-        <Outlet />
-      </main>
+      <Main>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </Main>
     </>
   );
 };

@@ -6,25 +6,29 @@ import { fetchMovies } from 'servises/getMovies';
 
 const LS_MOVIES = 'movies';
 const Movies = () => {
-  const moviesLS = JSON.parse(localStorage.getItem(LS_MOVIES));
-  const [movies, setMovies] = useState(() => (moviesLS ? [...moviesLS] : []));
+  // const [movies, setMovies] = useState(() => ([]));
   const [searchParams, setSearchParams] = useSearchParams();
 
   const query = searchParams.get('query') ?? '';
+  console.log('🚀 ~ Movies ~ query:', query);
+  const moviesLS = JSON.parse(localStorage.getItem(LS_MOVIES));
+  const [movies, setMovies] = useState(() =>
+    moviesLS && query ? [...moviesLS] : []
+  );
+  
+  useEffect(() => {
+    localStorage.setItem(LS_MOVIES, JSON.stringify(movies));
 
-  // useEffect(() => {
-  //   localStorage.setItem(LS_MOVIES, JSON.stringify(movies));
-
-  //   return () => {
-  //     console.log('🚀 ~ return ~ query:', query);
-  //     console.log('🚀 ~ return ~ movies:', movies);
-  //     if (movies.length > 0 && query === '') {
-  //       console.log('Єто устовие очистки сторедж', query);
-  //       localStorage.removeItem(LS_MOVIES);
-  //       return;
-  //     }
-  //   };
-  // }, [movies, query]);
+    // return () => {
+    //   console.log('🚀 ~ return ~ query:', query);
+    //   console.log('🚀 ~ return ~ movies:', movies);
+    //   if (movies.length > 0 && query === '') {
+    //     console.log('Єто устовие очистки сторедж', query);
+    //     localStorage.removeItem(LS_MOVIES);
+    //     return;
+    //   }
+    // };
+  }, [movies, query]);
 
   const handelChenge = e => {
     const searchValue = e.target.value;

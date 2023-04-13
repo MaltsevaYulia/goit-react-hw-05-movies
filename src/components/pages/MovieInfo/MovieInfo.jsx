@@ -1,6 +1,8 @@
-import { Link, Outlet } from 'react-router-dom';
+import {  Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, Suspense } from 'react';
+import { MdKeyboardBackspace } from 'react-icons/md';
+import { StyledBackLink, StyledDiv } from './MovieInfo.styled';
 
 const {
   default: AdditionalInfo,
@@ -13,10 +15,17 @@ const MovieInfo = () => {
   // console.log("🚀 ~ MovieInfo ~ location:", location)
   return (
     <>
-      <Link to={backLinkLocationRef.current}>Go back</Link>
+      <StyledBackLink to={backLinkLocationRef.current}>
+        <StyledDiv>
+          {<MdKeyboardBackspace />}
+          <span>Go back</span>
+        </StyledDiv>
+      </StyledBackLink>
       <MoviesCard />
       <AdditionalInfo />
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

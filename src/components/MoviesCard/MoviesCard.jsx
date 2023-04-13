@@ -2,7 +2,13 @@ import { useParams } from 'react-router-dom';
 import css from './MoviesCard.module.css';
 import { useEffect, useState } from 'react';
 import { fetchMovies } from 'servises/getMovies';
-import { DivMovie, DivHero, MovieImg, DivContent } from './MoviesCard.styled';
+import {
+  DivMovie,
+  DivHero,
+  MovieImg,
+  DivContent,
+  UlGenres,
+} from './MoviesCard.styled';
 
 const MoviesCard = () => {
   const { movieId } = useParams();
@@ -44,11 +50,11 @@ const MoviesCard = () => {
         <h2>Overview</h2>
         <p className={css.movie__description}>{movie.overview}</p>
         <h3>Genres</h3>
-        <ul>
+        <UlGenres>
           {genres.map(el => {
             return <li key={el.id}>{el.name}</li>;
           })}
-        </ul>
+        </UlGenres>
       </DivContent>
     </DivMovie>
   );
