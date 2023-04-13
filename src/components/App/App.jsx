@@ -4,9 +4,8 @@ import Layout from 'components/Layout/Layout';
 // import MovieDetails from 'components/pages/MovieDetails/MovieDetails';
 // import Cacts from 'components/Cacts/Cacts';
 // import Reviews from 'components/Reviews/Reviews';
-
-import { useEffect, useState } from 'react';
-import { fetchMovies } from 'servises/getMovies';
+// import { useEffect, useState } from 'react';
+// import { fetchMovies } from 'servises/getMovies';
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 
@@ -18,23 +17,12 @@ const Cacts = lazy(() => import('../Cacts/Cacts'));
 const Reviews = lazy(() => import('../Reviews/Reviews'));
 
 export const App = () => {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    fetchMovies('trending/movie/day')
-      .then(({ data: { results } }) => {
-        setMovies(results);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
 
   return (
     <div>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home movies={movies} />} />
+          <Route index element={<Home  />} />
           <Route path="movies" element={<Movies />} />
           <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="casts" element={<Cacts />} />

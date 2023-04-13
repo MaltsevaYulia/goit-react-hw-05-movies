@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchMovies } from 'servises/getMovies';
+import { moviesMapper } from '../helper/MoviesMapper';
 
 const LS_MOVIES = 'movies';
 const Movies = () => {
@@ -33,8 +34,8 @@ const Movies = () => {
 
     fetchMovies(`search/movie?query=${query}`)
       .then(({ data: { results } }) => {
-        console.log('results', results);
-        setMovies([...results]);
+        // console.log('results', results);
+        setMovies([...moviesMapper(results)]);
       })
       .catch(error => {
         console.log(error);
