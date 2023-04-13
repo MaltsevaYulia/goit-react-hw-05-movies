@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import css from './MoviesCard.module.css';
 import { useEffect, useState } from 'react';
 import { fetchMovies } from 'servises/getMovies';
 import {
@@ -8,6 +7,7 @@ import {
   MovieImg,
   DivContent,
   UlGenres,
+  StyledP,
 } from './MoviesCard.styled';
 
 const MoviesCard = () => {
@@ -20,8 +20,6 @@ const MoviesCard = () => {
     fetchMovies(`/movie/${movieId}`)
       .then(
         ({ data: { poster_path, title, overview, genres, vote_average } }) => {
-          //   console.log('data', data);
-          // setMovies(prevMovies => [...prevMovies, ...results]);
           setMovie({ poster_path, title, overview, vote_average });
           setGenres([...genres]);
         }
@@ -29,10 +27,6 @@ const MoviesCard = () => {
       .catch(error => {
         console.log(error);
       });
-
-    // return () => {
-
-    // }
   }, [movieId]);
 
   return (
@@ -44,11 +38,11 @@ const MoviesCard = () => {
         />
       </DivHero>
       <DivContent>
-        <h1 className={css.heading__primary}>{movie.title}</h1>
+        <h1>{movie.title}</h1>
         <p>User score: {Math.round(movie.vote_average * 10)}%</p>
         {/* <p>User score: {movie.vote_average}</p> */}
         <h2>Overview</h2>
-        <p className={css.movie__description}>{movie.overview}</p>
+        <StyledP>{movie.overview}</StyledP>
         <h3>Genres</h3>
         <UlGenres>
           {genres.map(el => {

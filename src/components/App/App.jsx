@@ -1,7 +1,7 @@
 import Layout from 'components/Layout/Layout';
 // import Home from 'components/pages/Home';
 // import Movies from 'components/pages/Movies';
-// import MovieInfo from 'components/pages/MovieInfo/MovieInfo';
+// import MovieDetails from 'components/pages/MovieDetails/MovieDetails';
 // import Cacts from 'components/Cacts/Cacts';
 // import Reviews from 'components/Reviews/Reviews';
 
@@ -13,7 +13,7 @@ import { lazy } from 'react';
 // const Layout = lazy(() => import('../Layout/Layout'));
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
-const MovieInfo = lazy(() => import('../pages/MovieInfo/MovieInfo'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
 const Cacts = lazy(() => import('../Cacts/Cacts'));
 const Reviews = lazy(() => import('../Reviews/Reviews'));
 
@@ -36,7 +36,7 @@ export const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home movies={movies} />} />
           <Route path="movies" element={<Movies />} />
-          <Route path="movies/:movieId" element={<MovieInfo />}>
+          <Route path="movies/:movieId" element={<MovieDetails />}>
             <Route path="casts" element={<Cacts />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>

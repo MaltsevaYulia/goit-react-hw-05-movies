@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
 const MoviesList = ({ movies }) => {
-    // const [movie, setMovie] = useState({})
-    // const clickHandler = (e) => {
-    //     console.log(e.target);
-    // }
    const location=useLocation()
   // console.log("🚀 ~ Home ~ location:", location)
   return (

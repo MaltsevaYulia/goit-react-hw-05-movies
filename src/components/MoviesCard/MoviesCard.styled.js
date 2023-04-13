@@ -26,18 +26,19 @@ export const MovieImg = styled.img`
 export const DivContent = styled.div`
   background-color: #fff;
   flex: 1;
-  padding: 35px 30px;
+  padding: 0px 30px;
   display: flex;
   flex-direction: column;
 `;
 
 export const UlGenres = styled.ul`
-  // max-width: 800px;
-  // border-radius: 5px;
   display: flex;
   list-style: none;
   gap: 15px;
   padding-left: 0;
-  // box-shadow: 0 5px 20px 10px rgba(0, 0, 0, 0.2);
-  // overflow: hidden;
+  flex-wrap: wrap;
+`;
+
+export const StyledP = styled.p`
+    font-size: 14px;
 `;

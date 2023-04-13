@@ -2,17 +2,17 @@ import {  Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useRef, Suspense } from 'react';
 import { MdKeyboardBackspace } from 'react-icons/md';
-import { StyledBackLink, StyledDiv } from './MovieInfo.styled';
+import { StyledBackLink, StyledDiv } from './MovieDetails.styled';
 
 const {
   default: AdditionalInfo,
 } = require('components/AdditionalInfo/AdditionalInfo');
 const { default: MoviesCard } = require('components/MoviesCard/MoviesCard');
 
-const MovieInfo = () => {
+const MovieDetails = () => {
   const location = useLocation();
-   const backLinkLocationRef = useRef(location.state?.from ?? '/');
-  // console.log("🚀 ~ MovieInfo ~ location:", location)
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
+ 
   return (
     <>
       <StyledBackLink to={backLinkLocationRef.current}>
@@ -30,4 +30,4 @@ const MovieInfo = () => {
   );
 };
 
-export default MovieInfo;
+export default MovieDetails;

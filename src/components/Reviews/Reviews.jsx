@@ -14,13 +14,8 @@ const Reviews = () => {
       .catch(error => {
         console.log(error);
       });
-
-    // return () => {
-
-    // }
   }, [movieId]);
 
-  //author,content
   return (
     <ul>
       {reviews.length === 0 ? (
